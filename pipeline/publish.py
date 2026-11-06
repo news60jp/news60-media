@@ -5,7 +5,7 @@ import os, sys, shutil, subprocess, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = "/home/claude/news60-media"
 sys.path.insert(0, HERE)
-from post_reel import post_reel
+from post_reel import post_reel, post_story
 
 def upload(video):
     if not os.path.isdir(os.path.join(REPO, ".git")):
@@ -25,3 +25,12 @@ def upload(video):
 if __name__ == "__main__":
     url = upload(sys.argv[1]); print("uploaded:", url)
     print("posted:", post_reel(url, sys.argv[2]))
+    # ストーリーズは60秒以内の制限があるので冒頭20秒の予告版を切り出して流す
+    try:
+        import subprocess
+        teaser = sys.argv[1].rsplit(".",1)[0] + "_story.mp4"
+        subprocess.run(["ffmpeg","-y","-loglevel","error","-i",sys.argv[1],"-t","20",
+            "-vf","fade=t=out:st=18.5:d=1.5","-af","afade=t=out:st=18.5:d=1.5",
+            "-c:v","libx264","-preset","veryfast","-pix_fmt","yuv420p","-c:a","aac",teaser], check=True)
+        print("story:", post_story(upload(teaser)))
+    except Exception as e: print("story failed (reel ok):", e)
