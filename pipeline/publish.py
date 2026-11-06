@@ -30,7 +30,9 @@ if __name__ == "__main__":
         import subprocess
         teaser = sys.argv[1].rsplit(".",1)[0] + "_story.mp4"
         subprocess.run(["ffmpeg","-y","-loglevel","error","-i",sys.argv[1],"-t","20",
-            "-vf","fade=t=out:st=18.5:d=1.5","-af","afade=t=out:st=18.5:d=1.5",
+            "-vf","drawbox=y=1500:h=190:color=black@0.65:t=fill:enable='gte(t,14)',"
+                  "drawtext=fontfile=/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc:text='続きはリールで ▶':fontsize=84:fontcolor=white:x=(w-tw)/2:y=1548:enable='gte(t,14)',"
+                  "fade=t=out:st=18.5:d=1.5","-af","afade=t=out:st=18.5:d=1.5",
             "-c:v","libx264","-preset","veryfast","-pix_fmt","yuv420p","-c:a","aac",teaser], check=True)
         print("story:", post_story(upload(teaser)))
     except Exception as e: print("story failed (reel ok):", e)
