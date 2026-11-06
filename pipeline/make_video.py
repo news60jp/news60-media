@@ -183,6 +183,9 @@ def _build(script, out, tmp):
     scenes[-1][2] = t = t + 0.3  # 声が終わったらすぐ終了
     for s in scenes: s[1] = round(s[1] * FPS) / FPS; s[2] = round(s[2] * FPS) / FPS
     scenes[0][1] = 0.0; TOTAL = scenes[-1][2]
+    # ストーリーズ予告版用: つかみ(シーン1)が終わる秒数を書き出す
+    json.dump({"hook_end": round(scenes[0][2], 2), "total": round(TOTAL, 2)},
+              open(os.path.splitext(out)[0] + ".timing.json", "w"))
     # 音声ミックス
     n = int(TOTAL * SR) + SR; voice = np.zeros(n, dtype=np.float32)
     for (si, st, en, _), a in zip(timeline, clips): k = int(st * SR); voice[k:k + len(a)] += a

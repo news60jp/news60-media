@@ -29,10 +29,15 @@ if __name__ == "__main__":
     try:
         import subprocess
         teaser = sys.argv[1].rsplit(".",1)[0] + "_story.mp4"
-        subprocess.run(["ffmpeg","-y","-loglevel","error","-i",sys.argv[1],"-t","20",
-            "-vf","drawbox=y=1500:h=190:color=black@0.65:t=fill:enable='gte(t,14)',"
-                  "drawtext=fontfile=/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc:text='続きはリールで ▶':fontsize=84:fontcolor=white:x=(w-tw)/2:y=1548:enable='gte(t,14)',"
-                  "fade=t=out:st=18.5:d=1.5","-af","afade=t=out:st=18.5:d=1.5",
+        # 「〜を60秒で見ていきます」(つかみの最後)で終わるように、make_video が書いた timing.json を使う
+        import json as _j
+        tj = sys.argv[1].rsplit(".",1)[0] + ".timing.json"
+        T = min(59.0, _j.load(open(tj))["hook_end"]) if os.path.exists(tj) else 20.0
+        cta = max(0.0, T - 4.0); fo = max(0.0, T - 1.0)
+        subprocess.run(["ffmpeg","-y","-loglevel","error","-i",sys.argv[1],"-t",f"{T:.2f}",
+            "-vf",f"drawbox=y=1500:h=190:color=black@0.65:t=fill:enable='gte(t,{cta:.2f})',"
+                  f"drawtext=fontfile=/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc:text='続きはリールで ▶':fontsize=84:fontcolor=white:x=(w-tw)/2:y=1548:enable='gte(t,{cta:.2f})',"
+                  f"fade=t=out:st={fo:.2f}:d=1","-af",f"afade=t=out:st={fo:.2f}:d=1",
             "-c:v","libx264","-preset","veryfast","-pix_fmt","yuv420p","-c:a","aac",teaser], check=True)
         print("story:", post_story(upload(teaser)))
     except Exception as e: print("story failed (reel ok):", e)
