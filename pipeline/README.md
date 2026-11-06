@@ -5,7 +5,7 @@
 ## 手順(スケジュール実行時にClaudeが行う)
 1. /home/claude/news60/.env と make_video.py, publish.py, post_reel.py, images.py, STYLE.md があることを確認(なければ利用者に報告して終了)
 2. add_repo で news60jp/news60-media を push で接続
-3. ネタ選び: STYLE.md の採点表で候補5本を採点し最高点を選ぶ(合計8点未満は選ばない)。事実は出典2つ以上
+3. ネタ選び: ジャンルは「日本の最新政治」と「世界の政治」(STYLE.md)。候補6本を採点し最高点を選ぶ。事実は出典2つ以上
 4. 台本 script.json を書く(形式は make_video.py 冒頭)。必ず入れるもの:
    - シーン1 = つかみ: heading は「意外な数字」か「結論」。points に「この動画で分かること」を3つ(見どころ予告)。lines の1行目で即本題、2行目で「〜を60秒で」
    - 各シーンに image_query(英語キーワードを2〜3個の配列。例 ["japan supermarket food shelf","supermarket groceries"])。写真はOpenverse(商用可CC)から自動取得。見つからなければ単色背景に自動で戻る
