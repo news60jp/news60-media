@@ -1,7 +1,6 @@
-"""Buffer API 経由で TikTok に投稿する(Bufferの無料プラン。BufferはTikTok審査済みなので公開投稿できる)。
+"""Buffer API 経由で TikTok に投稿する(Bufferの無料プラン、TikTok審査済みアプリ)。
 .env に BUFFER_API_KEY と BUFFER_TIKTOK_CHANNEL_ID を入れておく。
 使い方: python3 post_tiktok.py <公開URLの動画> "<説明文>"
-エンドポイントと入力の形は developers.buffer.com の最新ドキュメントで確認して直すこと。
 """
 import os, sys, json, urllib.request
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -16,9 +15,13 @@ def gql(query, variables=None):
                                  headers={"Authorization": f"Bearer {KEY}", "Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=60) as r: return json.load(r)
 
-def post(video_url, text):
-    q = "mutation($i:CreatePostInput!){createPost(input:$i){__typename ... on PostActionSuccess{post{id}} ... on MutationError{message}}}"
-    v = {"i": {"channelId": CH, "text": text, "assets": [{"video": {"url": video_url}}],
+def post(video_url, text, title=None):
+    q = """mutation($i:CreatePostInput!){ createPost(input:$i){ __typename
+             ... on PostActionSuccess { post { id status dueAt } }
+             ... on MutationError { message } } }"""
+    v = {"i": {"channelId": CH, "text": text, "needsApproval": False,
+               "assets": [{"video": {"url": video_url}}],
+               "metadata": {"tiktok": {"isAiGenerated": True, "title": title or text.split("\n")[0][:90]}},
                "schedulingType": "automatic", "mode": "shareNow"}}
     return gql(q, v)
 

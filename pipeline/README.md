@@ -14,7 +14,7 @@
    - ナレーション合計 300〜400文字。min_seconds=61。尺が足りなければ読み上げ速度を自動で落として61秒以上にする(無音で伸ばさない)
 5. python3 make_video.py script.json out/YYYY-MM-DD.mp4 → ffmpeg で冒頭・中盤・終盤のフレームを抜いて確認。字幕のはみ出し・重なりがあれば直して作り直す(1回まで)
 6. Instagram: python3 publish.py out/YYYY-MM-DD.mp4 "キャプション"(GitHubへ置いてリール投稿)
-7. TikTok: 利用者のPCの接続フォルダ(get_device_info の connectedFolders)に device_commit_files で動画を置き、Claude in Chrome で https://www.tiktok.com/tiktokstudio/upload を開き、file input に file_upload → 説明文を入力 → 投稿。Chrome が使えない/フォルダ未接続なら、動画と説明文を利用者に渡して「TikTok Studioから投稿してください」と1行で案内
+7. TikTok: python3 post_tiktok.py <publish.pyが出した公開URL> "<説明文150字以内>"(Buffer API経由。.env に BUFFER_API_KEY と BUFFER_TIKTOK_CHANNEL_ID が必要)。返答の post.id を控え、1〜3分後に status が sent になったか確認(sending のままなら時間をおいて再確認、error があれば報告)
 8. SendUserFile で動画、SendUserMessage で投稿URLを報告
 
 ## キャプションの型
