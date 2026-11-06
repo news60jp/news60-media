@@ -5,7 +5,7 @@ import os, sys, shutil, subprocess, datetime
 HERE = os.path.dirname(os.path.abspath(__file__))
 REPO = "/home/claude/news60-media"
 sys.path.insert(0, HERE)
-from post_reel import post_reel, post_story
+from post_reel import post_reel, post_story, media_id_from_permalink, first_comment
 
 def upload(video):
     if not os.path.isdir(os.path.join(REPO, ".git")):
@@ -24,7 +24,11 @@ def upload(video):
 
 if __name__ == "__main__":
     url = upload(sys.argv[1]); print("uploaded:", url)
-    print("posted:", post_reel(url, sys.argv[2]))
+    permalink = post_reel(url, sys.argv[2]); print("posted:", permalink)
+    # 3つ目の引数があれば最初のコメント(問いかけ)を自分で付ける
+    if len(sys.argv) > 3 and sys.argv[3].strip():
+        try: print("first comment:", first_comment(media_id_from_permalink(permalink), sys.argv[3]))
+        except Exception as e: print("first comment failed:", e)
     # ストーリーズは60秒以内の制限があるので冒頭20秒の予告版を切り出して流す
     try:
         import subprocess

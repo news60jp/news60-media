@@ -41,6 +41,14 @@ def post_reel(video_url, caption, share_to_feed=True):
     mid = _wait_and_publish(c["id"])
     return get(mid, fields="permalink")["permalink"]
 
+def media_id_from_permalink(permalink):
+    for m in get(f"{IG}/media", fields="id,permalink", limit=10)["data"]:
+        if m["permalink"].rstrip("/") == permalink.rstrip("/"): return m["id"]
+
+def first_comment(media_id, text):
+    """投稿直後に自分で問いかけコメントを付ける(コメント欄を動かす。自分の投稿のみ)"""
+    return call(f"{media_id}/comments", message=text)["id"]
+
 def post_story(video_url):
     """同じ動画をストーリーズにも流す(24時間で消える。露出を増やすため)"""
     c = call(f"{IG}/media", media_type="STORIES", video_url=video_url)
