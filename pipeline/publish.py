@@ -28,7 +28,7 @@ if __name__ == "__main__":
     # 3つ目の引数があれば最初のコメント(問いかけ)を自分で付ける
     if len(sys.argv) > 3 and sys.argv[3].strip():
         try: print("first comment:", first_comment(media_id_from_permalink(permalink), sys.argv[3]))
-        except Exception as e: print("first comment failed:", e)
+        except (Exception, SystemExit) as e: print("first comment failed (reel ok):", e)  # call() は SystemExit を投げるのでストーリーズに進めるよう捕まえる
     # ストーリーズは60秒以内の制限があるので冒頭20秒の予告版を切り出して流す
     try:
         import subprocess
@@ -44,4 +44,4 @@ if __name__ == "__main__":
                   f"fade=t=out:st={fo:.2f}:d=1","-af",f"afade=t=out:st={fo:.2f}:d=1",
             "-c:v","libx264","-preset","veryfast","-pix_fmt","yuv420p","-c:a","aac",teaser], check=True)
         print("story:", post_story(upload(teaser)))
-    except Exception as e: print("story failed (reel ok):", e)
+    except (Exception, SystemExit) as e: print("story failed (reel ok):", e)
