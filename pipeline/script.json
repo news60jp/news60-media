@@ -1,139 +1,64 @@
 {
- "title": "消費税減税法案 衆院通過",
- "category": "国内・政治",
- "date": "2026.11.8",
- "sources": "NHK、共同通信、東スポWEB、8and",
+ "title": "イスラエル 政権交代へ一歩",
+ "category": "海外・政治",
+ "date": "2026.11.9",
+ "sources": "AFP、アルジャジーラ、BBC、エルサレム・ポスト",
  "min_seconds": 61,
- "theme": "wine",
+ "theme": "navy",
  "scenes": [
   {
-   "heading": "自民4人が退席 なぜ?",
-   "image_query": [
-    "national diet building tokyo",
-    "japan parliament building",
-    "tokyo nagatacho government"
-   ],
-   "points": [
-    "減税法案はどこまで進んだ?",
-    "退席した4人はだれ?",
-    "参議院で成立する?"
-   ],
+   "heading": "ネタニヤフ氏 退陣へ?",
+   "image_query": ["knesset building jerusalem", "israel parliament knesset", "jerusalem government building"],
+   "points": ["総選挙の結果はどうなった?", "なぜ野党の人が組閣?", "日本にどう響く?"],
    "lines": [
-    {
-     "cap": "食べ物の消費税を{8%から1%}に\nする法案が衆議院を通過",
-     "say": "食べ物の消費税を8%から1%にする法案が、衆議院を通過しました。"
-    },
-    {
-     "cap": "でも{自民党の4人}が\n採決の前に退席しました",
-     "say": "でも、自民党の4人が、採決の前に退席しました。"
-    },
-    {
-     "cap": "どこまで進んだ? 4人はだれ?\n{参議院}で成立する?",
-     "say": "法案はどこまで進んだのか、4人はだれなのか、参議院で成立するのか。60秒で見ていきます。"
-    }
+    {"cap": "イスラエルで{最長}の首相\nネタニヤフ氏に退陣の可能性", "say": "イスラエルで最も長く首相を務めたネタニヤフ氏に、退陣の可能性が出てきました。"},
+    {"cap": "大統領が{野党}の\nアイゼンコット氏に組閣を要請", "say": "大統領が、野党のアイゼンコット氏に組閣を要請したんです。"},
+    {"cap": "選挙はどうなった? なぜ野党?\n{日本}にどう響く? 60秒で", "say": "選挙結果は?なぜ野党?日本にどう響く?60秒で見ていきます。"}
    ]
   },
   {
-   "heading": "衆議院で可決",
-   "theme": "forest",
-   "image_query": [
-    "japan supermarket food shelf",
-    "supermarket groceries vegetables",
-    "grocery store japan"
-   ],
-   "points": [
-    "11月6日 衆院本会議で可決",
-    "来年4月から2年間 8%→1%",
-    "野党は全党が反対"
-   ],
+   "heading": "10月27日の総選挙",
+   "theme": "ocean",
+   "image_query": ["israel election ballot box", "voting ballot israel", "election polling station"],
+   "number": {"value": "53対48", "label": "与党側 vs 野党連合(定数120)"},
+   "points": ["過半数61にどちらも届かず", "アラブ系政党は過去最多19議席"],
    "lines": [
-    {
-     "cap": "{11月6日}の衆院本会議\n自民・維新などの賛成で可決",
-     "say": "11月6日の衆議院本会議。自民党と日本維新の会などの賛成多数で可決されました。"
-    },
-    {
-     "cap": "来年4月から{2年間}\n食料品の税率は8%→1%",
-     "say": "来年4月から2年間、食料品の税率を1%に下げる内容。野党は全党が反対しました。"
-    }
+    {"cap": "{10月27日}の総選挙\n与党側53 野党連合48", "say": "10月27日の総選挙。与党側が53議席、野党連合が48議席。"},
+    {"cap": "過半数の61に\nどちらも{届かず}", "say": "定数120の過半数、61にどちらも届きませんでした。"},
+    {"cap": "アラブ系政党が\n{過去最多}の19議席", "say": "カギは、過去最多の19議席を取ったアラブ系政党です。"}
    ]
   },
   {
-   "heading": "退席した4人",
-   "theme": "slate",
-   "image_query": [
-    "empty parliament seats",
-    "assembly hall empty chairs",
-    "parliament chamber seats"
-   ],
-   "number": {
-    "value": "4人",
-    "label": "採決前に退席した自民党議員"
-   },
-   "points": [
-    "石破前首相・小渕優子氏",
-    "古川禎久氏・船田元氏"
-   ],
-   "lines": [
-    {
-     "cap": "{石破前首相}、小渕優子氏\n古川禎久氏、船田元氏",
-     "say": "退席したのは、石破前首相、小渕優子氏、古川禎久氏、船田元氏の4人。"
-    },
-    {
-     "cap": "石破氏「{財源}が明らかでなく\n財政を毀損する」",
-     "say": "石破氏は、財源が明らかでなく、財政を毀損すると説明しました。"
-    }
-   ]
-  },
-  {
-   "heading": "9日までに説明を",
-   "theme": "wine",
-   "image_query": [
-    "documents paper desk",
-    "official document envelope",
-    "paperwork stack office"
-   ],
-   "points": [
-    "執行部が文書で説明を要求",
-    "回答期限は11月9日",
-    "執行部「看過できない」"
-   ],
-   "lines": [
-    {
-     "cap": "自民党執行部は4人に\n{文書で説明}を求めました",
-     "say": "自民党執行部は、看過できないとして、文書で説明を求めました。"
-    },
-    {
-     "cap": "期限は{9日}\n回答を見て対応を検討",
-     "say": "期限は9日。回答を見て、対応を検討するとみられます。"
-    }
-   ]
-  },
-  {
-   "heading": "参議院はどうなる?",
+   "heading": "なぜ野党の人に?",
    "theme": "plum",
-   "image_query": [
-    "japan national diet building",
-    "tokyo nagatacho",
-    "kasumigaseki tokyo street"
-   ],
-   "points": [
-    "11日に参議院で審議入り",
-    "与党は参院で過半数に届かず",
-    "会期末は12月12日"
-   ],
+   "image_query": ["jerusalem old city skyline", "israeli flag waving", "jerusalem city view"],
+   "number": {"value": "67人", "label": "アイゼンコット氏を推薦した議員"},
+   "points": ["ネタニヤフ氏の推薦は46人", "アラブ系政党も推薦に回る"],
    "lines": [
-    {
-     "cap": "{11日}に参議院で審議入り\nでも与党は過半数に届かず",
-     "say": "法案は11日に参議院で審議入り。でも、与党は参議院で過半数に届かず、野党の協力が必要です。"
-    },
-    {
-     "cap": "政府・与党は{12月12日}の\n会期末までの成立を目指す",
-     "say": "政府と与党は、12月12日の会期末までの成立を目指しています。"
-    },
-    {
-     "cap": "この法案 参議院を\n{通る}と思いますか?",
-     "say": "この法案、参議院を通ると思いますか。コメントで教えてください。"
-    }
+    {"cap": "議員{67人}がアイゼンコット氏を\n推薦 ネタニヤフ氏は46人", "say": "各党に聞くと、67人の議員がアイゼンコット氏を推薦。ネタニヤフ氏は46人。"},
+    {"cap": "アラブ系政党も推薦\n大統領は{7日}に発表 8日に委任", "say": "アラブ系政党も推したためで、大統領は7日に発表、8日に正式委任しました。"}
+   ]
+  },
+  {
+   "heading": "期限は28日間",
+   "theme": "wine",
+   "image_query": ["calendar deadline clock", "hourglass time", "negotiation table meeting"],
+   "number": {"value": "28日", "label": "組閣の期限(最大14日延長)"},
+   "points": ["66歳の元参謀総長が組閣へ", "まとまらなければ再選挙も"],
+   "lines": [
+    {"cap": "66歳のアイゼンコット氏\n期限は{28日}+最大14日延長", "say": "66歳のアイゼンコット氏は、28日以内、延長しても最大42日で連立をまとめる必要があります。"},
+    {"cap": "「{国家非常事態政府}を」\nまとまらなければ再選挙も", "say": "本人は「国家非常事態政府を」と表明。まとまらなければ再選挙の可能性もあります。"}
+   ]
+  },
+  {
+   "heading": "日本にどう響く?",
+   "theme": "forest",
+   "image_query": ["oil tanker ship sea", "gas station japan", "crude oil tanker port"],
+   "number": {"value": "95%", "label": "日本の原油輸入の中東依存度"},
+   "points": ["中東の緊張→ガソリン・電気代", "政権交代なら外交も変わる?"],
+   "lines": [
+    {"cap": "日本の原油の{約95%}は中東から\n情勢次第でガソリン代にも", "say": "日本の原油の約95%は中東から。中東情勢が動けば、ガソリン代や電気代にも響きます。"},
+    {"cap": "新政権は誕生する?\n{コメント}で教えてください", "say": "新政権は誕生するのか。あなたはどう見ますか?コメントで教えてください。"}
    ]
   }
  ]
