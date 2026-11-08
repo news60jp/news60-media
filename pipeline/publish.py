@@ -25,10 +25,9 @@ def upload(video):
 if __name__ == "__main__":
     url = upload(sys.argv[1]); print("uploaded:", url)
     permalink = post_reel(url, sys.argv[2]); print("posted:", permalink)
-    # 3つ目の引数があれば最初のコメント(問いかけ)を自分で付ける
-    if len(sys.argv) > 3 and sys.argv[3].strip():
-        try: print("first comment:", first_comment(media_id_from_permalink(permalink), sys.argv[3]))
-        except (Exception, SystemExit) as e: print("first comment failed (reel ok):", e)  # call() は SystemExit を投げるのでストーリーズに進めるよう捕まえる
+    # 3つ目の引数があれば最初のコメント(問いかけ)を自分で付ける。
+    # 投稿直後は「(#10) permission」で弾かれることがあるので、ストーリーズ投稿のあと時間をずらして最大3回試す
+    first_comment_text = sys.argv[3].strip() if len(sys.argv) > 3 else ""
     # ストーリーズは60秒以内の制限があるので冒頭20秒の予告版を切り出して流す
     try:
         import subprocess
@@ -45,3 +44,14 @@ if __name__ == "__main__":
             "-c:v","libx264","-preset","veryfast","-pix_fmt","yuv420p","-c:a","aac",teaser], check=True)
         print("story:", post_story(upload(teaser)))
     except (Exception, SystemExit) as e: print("story failed (reel ok):", e)
+    if first_comment_text:
+        import time
+        mid = media_id_from_permalink(permalink)
+        for wait in (0, 300, 900):  # すぐ → 5分後 → さらに15分後
+            time.sleep(wait)
+            try:
+                print("first comment:", first_comment(mid, first_comment_text)); break
+            except (Exception, SystemExit) as e:
+                print("first comment failed, retrying later:", e)
+        else:
+            print("first comment gave up (reel/story ok). 手動でコメントしてください:", first_comment_text)
