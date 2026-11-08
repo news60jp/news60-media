@@ -25,6 +25,7 @@ def search(query, n=8):
     for r in d.get("results", []):
         w, h = r.get("width") or 0, r.get("height") or 0
         url = r.get("url", "")
+        if "upload.wikimedia.org" in url: continue  # クラウドからは 429 で落とせず、再試行で数十秒失う
         if "staticflickr.com" in url and not url.endswith("_b.jpg"): url = re.sub(r"(_[a-z])?\.jpg$", "_b.jpg", url)
         out.append({"url": url, "w": w, "h": h, "title": r.get("title") or "", "creator": r.get("creator") or "",
                     "license": (r.get("license") or "").upper(), "fallback": r.get("url", "")})
