@@ -1,3 +1,4 @@
 pipeline/.env
 pipeline/out/
 pipeline/img_cache/
+__pycache__/
